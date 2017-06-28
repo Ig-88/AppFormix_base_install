@@ -1,6 +1,6 @@
 
 ##NOT a shell script
-##HOW TO INSTALL APPFORMIX ON UBUNTU 16.04 
+##HOW TO INSTALL APPFORMIX_vCENTER ON UBUNTU 16.04 
 ##Assume a Ubuntu base install with SSH server installed
 
 ##get root

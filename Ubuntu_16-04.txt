@@ -1,0 +1,59 @@
+
+##NOT a shell script
+##HOW TO INSTALL APPFORMIX ON UBUNTU 16.04 
+##Assume a Ubuntu base install with SSH server installed
+
+##get root
+sudo su
+
+##set root password
+passwd
+
+##all following commands done as root
+
+apt-add-repository 'deb https://apt.dockerproject.org/repo ubuntu-xenial main'
+echo deb http://cz.archive.ubuntu.com/ubuntu trusty main >> /etc/apt/sources.list
+apt-get update
+
+apt-get install python python-pip openssl uild-essential libssl-dev libffi-dev python-dev sshpass libsystemd-dev
+pip install --upgrade pip
+pip install ansible==1.9.3 libhttp2
+
+mkdir /AppFormix
+
+##use favorite file transfer program to get AppFormix packages (docker img and AppFormix)
+##move files to /AppFormix
+mv /root/appformix* /AppFormix
+
+###unpack appformix
+tar -zxvf appformix-2.7.1.tar.gz
+
+##make directory structure
+mkdir /etc/ansible
+mkdir /etc/ansible/inventory
+mkdir /etc/ansible/inventory/group_vars
+touch /etc/ansible/inventory/hosts
+touch /etc/ansible/inventory/group_vars/all
+
+##edit/add content to the vars/all file
+vi /etc/ansible/inventory/group_vars/all
+appformix_docker_images_file: /path/to/appformix-docker-images-<version>.tar.gz
+appformix_license: /path/to/license_file
+openstack_platform_enabled: False
+vcenter_platform_enabled: True
+
+##remove < >
+appformix_vcenter_adapter_vcenter_ip:    <vCenter Server Ip (e.g., 10.10.10.1)>
+appformix_vcenter_adapter_vcenter_port:  <vCenter Server Port (optional, defaults to 443)>
+appformix_vcenter_adapter_vcenter_name:  <vCenter Server Name (e.g., vCenter_1)>
+appformix_vcenter_adapter_vcenter_user:  <vCenter Server admin User Name (e.g., administrator@vsphere.local)>
+appformix_vcenter_adapter_vcenter_password: <vCenter Server admin password>
+################
+
+
+##copy ansible config into /etc/ansible/ansible.cfg
+wget https://raw.githubusercontent.com/ansible/ansible/devel/examples/ansible.cfg; mv ansible.cfg /etc/ansible/
+
+ansible all -i /etc/ansible/inventory/hosts -m ping -k
+
+ansible-playbook -i /etc/ansible/inventory appformix_vcenter.yml

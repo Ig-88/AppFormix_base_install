@@ -12,7 +12,12 @@ passwd
 
 ##all following commands done as root
 
-apt-add-repository 'deb https://apt.dockerproject.org/repo ubuntu-xenial main'
+##get the docker CE repo key
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv 9DC858229FC7DD38854AE2D88D81803C0EBFCD88
+
+
+apt-add-repository 'deb https://apt.dockerproject.org/repo/ ubuntu-xenial main'
 echo deb http://cz.archive.ubuntu.com/ubuntu trusty main >> /etc/apt/sources.list
 apt-get update
 

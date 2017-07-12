@@ -16,7 +16,7 @@ apt-add-repository 'deb https://apt.dockerproject.org/repo ubuntu-xenial main'
 echo deb http://cz.archive.ubuntu.com/ubuntu trusty main >> /etc/apt/sources.list
 apt-get update
 
-apt-get install python python-pip openssl uild-essential libssl-dev libffi-dev python-dev sshpass libsystemd-dev
+apt-get install python python-pip openssl build-essential libssl-dev libffi-dev python-dev sshpass libsystemd-dev
 pip install --upgrade pip
 pip install ansible==1.9.3 libhttp2
 

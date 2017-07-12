@@ -13,9 +13,8 @@ passwd
 ##all following commands done as root
 
 ##get the docker CE repo key
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv 9DC858229FC7DD38854AE2D88D81803C0EBFCD88
 
+apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
 
 apt-add-repository 'deb https://apt.dockerproject.org/repo/ ubuntu-xenial main'
 echo deb http://cz.archive.ubuntu.com/ubuntu trusty main >> /etc/apt/sources.list
@@ -23,7 +22,7 @@ apt-get update
 
 apt-get install python python-pip openssl build-essential libssl-dev libffi-dev python-dev sshpass libsystemd-dev
 pip install --upgrade pip
-pip install ansible==1.9.3 libhttp2
+pip install ansible==1.9.3 httplib2
 
 mkdir /AppFormix
 
@@ -63,3 +62,12 @@ wget https://raw.githubusercontent.com/ansible/ansible/devel/examples/ansible.cf
 ansible all -i /etc/ansible/inventory/hosts -m ping -k
 
 ansible-playbook -i /etc/ansible/inventory appformix_vcenter.yml
+
+
+
+
+
+
+###notes - disregard
+#curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+#apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv 9DC858229FC7DD38854AE2D88D81803C0EBFCD88

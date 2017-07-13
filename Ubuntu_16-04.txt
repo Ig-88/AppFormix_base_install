@@ -3,6 +3,7 @@
 ##HOW TO INSTALL APPFORMIX_vCENTER ON UBUNTU 16.04 
 ##http://docs.appformix.com/getting_started/index.html
 ##Assume a Ubuntu base install with SSH server installed
+##INTERNAL Link ONLY for AppFormix Releases  http://dl.appformix.juniper.net/releases/
 
 ##get root
 sudo su
